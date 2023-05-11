@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+//import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wonders/common_libs.dart';
@@ -24,7 +24,7 @@ class WallPaperLogic {
       if (result == true && mounted) {
         showModal(context, child: LoadingModal(msg: $strings.wallpaperModalSaving));
         if (PlatformInfo.isMobile) {
-          await ImageGallerySaver.saveImage(pngBytes, quality: 95, name: name);
+          //await ImageGallerySaver.saveImage(pngBytes, quality: 95, name: name);
         } else {
           await Future.delayed(500.ms);
         }

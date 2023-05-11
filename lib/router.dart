@@ -42,35 +42,35 @@ final appRouter = GoRouter(
           AppRoute(ScreenPaths.home, (_) => HomeScreen()),
           AppRoute(ScreenPaths.intro, (_) => IntroScreen()),
           AppRoute('/wonder/:type', (s) {
-            int tab = int.tryParse(s.queryParams['t'] ?? '') ?? 0;
+            int tab = int.tryParse(s.queryParameters['t'] ?? '') ?? 0;
             return WonderDetailsScreen(
-              type: _parseWonderType(s.params['type']),
+              type: _parseWonderType(s.queryParameters['type']),
               initialTabIndex: tab,
             );
           }, useFade: true),
           AppRoute('/timeline', (s) {
-            return TimelineScreen(type: _tryParseWonderType(s.queryParams['type']!));
+            return TimelineScreen(type: _tryParseWonderType(s.queryParameters['type']!));
           }),
           AppRoute('/video/:id', (s) {
-            return FullscreenVideoViewer(id: s.params['id']!);
+            return FullscreenVideoViewer(id: s.queryParameters['id']!);
           }),
           AppRoute('/highlights/:type', (s) {
-            return ArtifactCarouselScreen(type: _parseWonderType(s.params['type']));
+            return ArtifactCarouselScreen(type: _parseWonderType(s.queryParameters['type']));
           }),
           AppRoute('/search/:type', (s) {
-            return ArtifactSearchScreen(type: _parseWonderType(s.params['type']));
+            return ArtifactSearchScreen(type: _parseWonderType(s.queryParameters['type']));
           }),
           AppRoute('/artifact/:id', (s) {
-            return ArtifactDetailsScreen(artifactId: s.params['id']!);
+            return ArtifactDetailsScreen(artifactId: s.queryParameters['id']!);
           }),
           AppRoute('/collection', (s) {
-            return CollectionScreen(fromId: s.queryParams['id'] ?? '');
+            return CollectionScreen(fromId: s.queryParameters['id'] ?? '');
           }),
           AppRoute('/maps/:type', (s) {
-            return FullscreenMapsViewer(type: _parseWonderType(s.params['type']));
+            return FullscreenMapsViewer(type: _parseWonderType(s.queryParameters['type']));
           }),
           AppRoute('/wallpaperPhoto/:type', (s) {
-            return WallpaperPhotoScreen(type: _parseWonderType(s.params['type']));
+            return WallpaperPhotoScreen(type: _parseWonderType(s.queryParameters['type']));
           }),
         ]),
   ],
