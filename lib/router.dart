@@ -42,35 +42,35 @@ final appRouter = GoRouter(
           AppRoute(ScreenPaths.home, (_) => HomeScreen()),
           AppRoute(ScreenPaths.intro, (_) => IntroScreen()),
           AppRoute('/wonder/:type', (s) {
-            int tab = int.tryParse(s.queryParameters['t'] ?? '') ?? 0;
+            int tab = int.tryParse(s.pathParameters['t'] ?? '') ?? 0;
             return WonderDetailsScreen(
-              type: _parseWonderType(s.queryParameters['type']),
+              type: _parseWonderType(s.pathParameters['type']),
               initialTabIndex: tab,
             );
           }, useFade: true),
           AppRoute('/timeline', (s) {
-            return TimelineScreen(type: _tryParseWonderType(s.queryParameters['type']!));
+            return TimelineScreen(type: _tryParseWonderType(s.pathParameters['type']!));
           }),
           AppRoute('/video/:id', (s) {
-            return FullscreenVideoViewer(id: s.queryParameters['id']!);
+            return FullscreenVideoViewer(id: s.pathParameters['id']!);
           }),
           AppRoute('/highlights/:type', (s) {
-            return ArtifactCarouselScreen(type: _parseWonderType(s.queryParameters['type']));
+            return ArtifactCarouselScreen(type: _parseWonderType(s.pathParameters['type']));
           }),
           AppRoute('/search/:type', (s) {
-            return ArtifactSearchScreen(type: _parseWonderType(s.queryParameters['type']));
+            return ArtifactSearchScreen(type: _parseWonderType(s.pathParameters['type']));
           }),
           AppRoute('/artifact/:id', (s) {
-            return ArtifactDetailsScreen(artifactId: s.queryParameters['id']!);
+            return ArtifactDetailsScreen(artifactId: s.pathParameters['id']!);
           }),
           AppRoute('/collection', (s) {
-            return CollectionScreen(fromId: s.queryParameters['id'] ?? '');
+            return CollectionScreen(fromId: s.pathParameters['id'] ?? '');
           }),
           AppRoute('/maps/:type', (s) {
-            return FullscreenMapsViewer(type: _parseWonderType(s.queryParameters['type']));
+            return FullscreenMapsViewer(type: _parseWonderType(s.pathParameters['type']));
           }),
           AppRoute('/wallpaperPhoto/:type', (s) {
-            return WallpaperPhotoScreen(type: _parseWonderType(s.queryParameters['type']));
+            return WallpaperPhotoScreen(type: _parseWonderType(s.pathParameters['type']));
           }),
         ]),
   ],
@@ -105,10 +105,10 @@ class AppRoute extends GoRoute {
 
 String? _handleRedirect(BuildContext context, GoRouterState state) {
   // Prevent anyone from navigating away from `/` if app is starting up.
-  if (!appLogic.isBootstrapComplete && state.location != ScreenPaths.splash) {
+  if (!appLogic.isBootstrapComplete && state.matchedLocation != ScreenPaths.splash) {
     return ScreenPaths.splash;
   }
-  debugPrint('Navigate to: ${state.location}');
+  debugPrint('Navigate to: ${state.matchedLocation}');
   return null; // do nothing
 }
 
