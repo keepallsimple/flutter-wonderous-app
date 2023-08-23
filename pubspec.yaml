@@ -1,7 +1,7 @@
 name: wonders
 description: Explore the famous wonders of the world.
 publish_to: "none"
-version: 2.0.14+1
+version: 2.0.17+6
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
@@ -25,7 +25,10 @@ dependencies:
   flutter_native_splash: ^2.2.17
   flutter_staggered_grid_view: ^0.7.0
   flutter_svg: ^2.0.1
-  gap: ^3.0.0
+  gap:
+    git:
+      url: https://github.com/esDotDev/gap.git
+      ref: dc980bf
   get_it: ^7.2.0
   get_it_mixin: ^4.1.1
   google_maps_flutter: ^2.2.3
@@ -60,6 +63,16 @@ dev_dependencies:
   json_serializable: ^6.3.1
   dart_code_metrics: ^5.7.3
   dependency_validator: ^3.0.0
+
+icons_launcher:
+  image_path: "assets/marketing/app-icon-1024.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
+    macos:
+      enable: true
 
 flutter_icons:
   ios: true
